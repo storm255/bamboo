@@ -21,9 +21,14 @@ defmodule Bamboo.Attachment do
   def new(path, opts) do
     filename = opts[:filename] || Path.basename(path)
     content_type = opts[:content_type] || determine_content_type(path)
-    content_id = opts[:content_id] || << random :: size(32) >> = :crypto.strong_rand_bytes(4)
+    content_id = opts[:content_id] || random_bytes()
     data = File.read!(path)
     %__MODULE__{path: path, data: data, filename: filename, content_type: content_type}
+  end
+
+  defp random_bytes do
+    << random :: size(32) >> = :crypto.strong_rand_bytes(4)
+    random
   end
 
   defp determine_content_type(path) do
