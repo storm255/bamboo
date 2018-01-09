@@ -27,7 +27,7 @@ defmodule Bamboo.Attachment do
   end
 
   defp random_bytes do
-    :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length)
+    :crypto.strong_rand_bytes(24) |> Base.url_encode64
   end
 
   defp determine_content_type(path) do
