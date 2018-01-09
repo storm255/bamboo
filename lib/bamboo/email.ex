@@ -87,6 +87,7 @@ defmodule Bamboo.Email do
       text_body: nil,
       headers: %{},
       attachments: [],
+      inline_attachments: [],
       assigns: %{},
       private: %{}
 
@@ -248,5 +249,9 @@ defmodule Bamboo.Email do
   """
   def put_attachment(%__MODULE__{attachments: attachments} = email, path, opts \\ []) do
     %{email | attachments: [Bamboo.Attachment.new(path, opts) | attachments]}
+  end
+
+  def put_inline_attachment(%__MODULE__{inline_attachments: inline_attachments} = email, path, opts \\ []) do
+    %{email | inline_attachments: [Bamboo.Attachment.new(path, opts) | inline_attachments]}
   end
 end
