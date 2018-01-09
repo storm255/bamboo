@@ -2,7 +2,7 @@ defmodule Bamboo.Attachment do
   @moduledoc """
   """
 
-  defstruct filename: nil, content_type: nil, path: nil, data: nil
+  defstruct filename: nil, content_type: nil, path: nil, data: nil, content_id: nil
 
   @doc ~S"""
   Creates a new Attachment
@@ -21,6 +21,7 @@ defmodule Bamboo.Attachment do
   def new(path, opts) do
     filename = opts[:filename] || Path.basename(path)
     content_type = opts[:content_type] || determine_content_type(path)
+    content_id = opts[:content_id] || << random :: size(32) >> = :crypto.strong_rand_bytes(4)
     data = File.read!(path)
     %__MODULE__{path: path, data: data, filename: filename, content_type: content_type}
   end
