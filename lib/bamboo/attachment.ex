@@ -23,7 +23,7 @@ defmodule Bamboo.Attachment do
     content_type = opts[:content_type] || determine_content_type(path)
     content_id = opts[:content_id] || random_bytes()
     data = File.read!(path)
-    %__MODULE__{path: path, data: data, filename: filename, content_type: content_type}
+    %__MODULE__{path: path, data: data, filename: filename, content_type: content_type, content_id: content_id}
   end
 
   defp random_bytes do
