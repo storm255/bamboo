@@ -228,6 +228,9 @@ defmodule Bamboo.Email do
   def put_attachment(%__MODULE__{attachments: attachments} = email, %Attachment{} = attachment) do
     %{email | attachments: [attachment | attachments]}
   end
+  def put_inline_attachment(%__MODULE__{inline_attachments: inline_attachments} = email, %Attachment{} = inline_attachment) do
+    %{email | inline_attachments: [inline_attachment | inline_attachments]}
+  end
 
   @doc ~S"""
   Adds an file attachment to the email
